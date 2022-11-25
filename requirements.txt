@@ -2,7 +2,7 @@ fastapi==0.58.1
 uvicorn==0.11.5
 
 
-tensorflow-cpu
+tensorflow-lite
 tensorflow_hub
 tensorflow_text
 numpy
