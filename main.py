@@ -13,8 +13,8 @@ app = FastAPI()
 # embed = hub.load("/var/folders/25/z38s61zn0dnbmjcs68r62ywc0000gn/T/tfhub_modules")
 embed = hub.load("https://tfhub.dev/google/universal-sentence-encoder-multilingual/3")
 
-@app.get("/ping")
-def pong():
+@app.post("/ping")
+def pong(req):
     texts = ["It is cool", "Is it cool", "It is cool", "I saw a comedy show last night.", "Yesterday, I went to the park."]
     vectors = embed(texts)
     result = vectors.numpy().tolist()
