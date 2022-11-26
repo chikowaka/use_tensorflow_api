@@ -4,6 +4,7 @@ import tensorflow_hub as hub
 import tensorflow_text
 import numpy
 from typing import List
+import uvicorn
 
 # for avoiding error
 import ssl
@@ -25,3 +26,6 @@ def pong(req: PongModel):
     result = vectors.numpy().tolist()
     print(type(vectors), result)
     return {"res": result}
+
+if __name__ == '__main__':
+    uvicorn.run(app, host='0.0.0.0', port=8000)
