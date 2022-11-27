@@ -16,16 +16,20 @@ app = FastAPI()
 use_embed = hub.load("https://tfhub.dev/google/universal-sentence-encoder-multilingual/3")
 
 class ReqModel(BaseModel):
-    text: List[str]
+    tweet: List[str]
+    idea: List[str]
 
 @app.post("/embed")
 def embed(req: ReqModel):
-    print('req',req.text)
-    texts = req.text
-    vectors = use_embed(texts)
-    result = vectors.numpy().tolist()
-    print(type(vectors), result)
-    return {"res": result}
+    print('req',req)
+    tweet_texts = req.tweet
+    tweet_vectors = use_embed(tweet_texts)
+    tweet_result = tweet_vectors.numpy().tolist()
+    
+    idea_texts = req.idea
+    idea_vectors = use_embed(idea_texts)
+    idea_result = idea_vectors.numpy().tolist()
+    return {"tweet_vectors": tweet_result, "idea_vectors":idea_result}
 
 if __name__ == '__main__':
     uvicorn.run(app, host='0.0.0.0', port=80)
