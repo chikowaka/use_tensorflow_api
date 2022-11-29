@@ -21,7 +21,7 @@ class ReqModel(BaseModel):
 
 @app.post("/embed")
 def embed(req: ReqModel):
-    print('req',req)
+    # print('req',req)
     tweet_texts = req.tweet
     tweet_vectors = use_embed(tweet_texts)
     tweet_result = tweet_vectors.numpy().tolist()
